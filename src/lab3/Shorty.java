@@ -1,0 +1,100 @@
+package lab3;
+
+public abstract class Shorty {
+    private String name;
+    private int age;
+    private Place placeOfBorn;
+    private int money;
+    private Room room;
+    public Shorty(String name, int age, Place placeOfBorn, int money) {
+        this.name = name;
+        this.age = age;
+        this.placeOfBorn = placeOfBorn;
+        this.money = money;
+    }
+    public void decideToDoSomething(String part, String action) {
+        System.out.println("Время суток: " + part + ". " + this.getName() + " решил " + action + ".");
+    }
+
+    public void setLocation(Room room) {
+        this.room = room;
+        System.out.println(this.getName() + " находится в объекте " + room.getName() + ".");
+    }
+
+    public void startToDoSomething(String action) {
+        System.out.println(this.getName() + " начал " + action + ".");
+    }
+
+    public boolean washUp(Tongue soap, Tongue towel, Tongue faucet) {
+        if (soap.useThing(this)) {
+             if ( faucet.useThing(this)) {
+                 if (towel.useThing(this)) return true;
+             }else {
+                 System.out.println(this.getName() + " не смог смыть мыло, так как вода закончилась"+".");
+             }
+        }
+        else {
+            System.out.println(this.getName() + " не смог умыться"+".");
+        }
+        return false;
+    }
+
+    public void comeToSomething(Thing thing) {
+        System.out.println(this.getName() + " подошел к предмету: " + thing.getName()+".");
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public void analyzeTheSituation(String result) {
+        System.out.println(this.getName() + " проанализировал ситуацию и понял: " + result+".");
+    }
+
+
+
+    public void runToSomething(Thing thing) {
+        System.out.println(this.getName() + " подбежал к объекту: " + thing.getName()+".");
+    }
+
+    public void callForHelp(Shorty shorty) {
+        System.out.println(this.getName() + " стал звать на помощь коротышку " + shorty.getName() + ".");
+    }
+
+    public boolean turn(Faucet faucet, MethodsOfObjectRotation method, boolean result) {
+        System.out.println(this.getName() + " вертел " + faucet.getName() + " " + method.getMethods() + ".");
+        if (!result) {
+            System.out.println("Это не помогало.");
+        } else {
+            System.out.println("Это помогло.");
+            faucet.setCount(1);
+            faucet.use(this);
+        }
+        return result;
+    }
+
+    public boolean knock(Faucet faucet, boolean result) {
+        System.out.println(this.getName() + " стучал кулаком по объекту: " + faucet.getName() + ".");
+        if (!result) {
+            System.out.println("И это тоже не помогало.");
+        } else {
+            System.out.println("Это помогло.");
+            faucet.setCount(1);
+            faucet.use(this);
+        }
+        return result;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
