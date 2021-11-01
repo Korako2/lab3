@@ -5,8 +5,8 @@ public class Faucet extends Entity implements ThingsWithCost{
     private Water water;
     private Room room;
 
-    public Faucet() {
-        super("кран");
+    public Faucet(String name) {
+        super(name, "используется для подачи воды");
         water = new Water("вода");
     }
 

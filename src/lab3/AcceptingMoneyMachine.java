@@ -1,23 +1,23 @@
 package lab3;
 
-public class Tongue extends Entity implements Thing {
+public class AcceptingMoneyMachine extends Entity implements Thing {
     private String material;
     private ThingsWithCost thing;
     private Peephole peephole;
     private int cost;
     private int count;
     private boolean pokedOut;
-    private String info;
+    private String dopInfo;
 
-    public Tongue(ThingsWithCost thing, int cost, int count) {
-        super("язычок на оплату объекта " + thing.getName());
+    public AcceptingMoneyMachine(ThingsWithCost thing, int cost, int count) {
+        super("язычок", "на оплату объекта " + thing.getName());
         material = "металлический";
         this.cost = cost;
         this.count = count;
-        info = "торчит из стены";
         this.thing = thing;
         pokedOut = true;
         peephole = new Peephole(thing, Color.RED);
+        dopInfo = "торчит из стены";
     }
 
     public void setLocation(Room room) {
@@ -26,14 +26,14 @@ public class Tongue extends Entity implements Thing {
         peephole.setLocation(room);
     }
 
-    private void changeState(boolean flag){
+    private void changeState(boolean flag) {
         if (pokedOut == flag) {
             pokedOut = !pokedOut;
             peephole.changeState(pokedOut);
         }
         if (!pokedOut) {
-            info = "находится в стене";
-        } else info = "торчит из стены";
+            dopInfo = "находится в стене";
+        } else dopInfo = "торчит из стены";
     }
 
     public boolean isShining() {
@@ -44,11 +44,11 @@ public class Tongue extends Entity implements Thing {
         return cost;
     }
 
-    public Peephole getPeephole(){
+    public Peephole getPeephole() {
         return peephole;
     }
 
-    public void setCount(int count){
+    public void setCount(int count) {
         if (count == 0) changeState(false);
         thing.setCount(count);
     }
@@ -57,7 +57,7 @@ public class Tongue extends Entity implements Thing {
         return thing;
     }
 
-    public void disabledLight(){
+    public void disabledLight() {
         if (pokedOut) peephole.changeState(false);
     }
 
@@ -73,10 +73,10 @@ public class Tongue extends Entity implements Thing {
         System.out.println(this.getName() + " положил " + cost + " сантик(ов) в " + this.getName() + ".");
         thing.setCount(count);
         changeState(true);
-        System.out.println("Теперь " + this.getName() + " " + info);
+        System.out.println("Теперь " + this.getName() + " " + getInfo() + ", который " + dopInfo);
     }
 
     public String getDescription() {
-        return material + " " + getName() + ", который " + info;
+        return material + " " + getName() + " " + getInfo() + ", который " + dopInfo;
     }
 }

@@ -5,9 +5,11 @@ public enum MethodsOfObjectRotation {
     RIGHT("вправо"),
     BACKANDFORTH("то в одну сторону, то в другую сторону");
     private String methods;
+
     MethodsOfObjectRotation(String methods) {
         this.methods = methods;
     }
+
     public String getMethods() {
         return methods;
     }

@@ -6,7 +6,7 @@ public class MoonShorty extends Shorty {
         super(name, age, Place.MOON, money);
     }
 
-    public void payForSomething(Tongue tongue) {
+    public void payForSomething(AcceptingMoneyMachine tongue) {
         if (this.getMoney() >= tongue.getCost()) {
             tongue.putMoney(this);
             this.setMoney(this.getMoney() - tongue.getCost());

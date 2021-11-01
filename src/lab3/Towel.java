@@ -2,12 +2,14 @@ package lab3;
 
 public class Towel extends Entity implements ThingsWithCost {
     private int count;
-    public Towel() {
-        super("полотенце");
+
+    public Towel(String name) {
+        super(name, "используется для вытирания");
         this.count = 0;
     }
 
-    public void setLocation(Room room) {}
+    public void setLocation(Room room) {
+    }
 
     public boolean use(Shorty shorty) {
         if (count != 0) {
@@ -21,6 +23,7 @@ public class Towel extends Entity implements ThingsWithCost {
     public void setCount(int count) {
         this.count = count;
     }
+
     public int getCount() {
         return count;
     }

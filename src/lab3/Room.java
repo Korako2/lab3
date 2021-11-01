@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class Room extends Entity {
     private ArrayList<Thing> things = new ArrayList<>();
     private Lighting lighting;
-    private ArrayList<Tongue> tongues = new ArrayList<>();
+    private ArrayList<AcceptingMoneyMachine> tongues = new ArrayList<>();
 
-    public Room() {
-        super("комната");
+    public Room(String name, int square) {
+        super(name, "площадь: " + square);
         lighting = Lighting.LIGHT;
     }
 
@@ -16,7 +16,7 @@ public class Room extends Entity {
         things.add(thing);
     }
 
-    public void addTongue(Tongue tongue) {
+    public void addTongue(AcceptingMoneyMachine tongue) {
         tongues.add(tongue);
     }
 
@@ -24,9 +24,9 @@ public class Room extends Entity {
         this.lighting = lighting;
     }
 
-    private ArrayList<Tongue> getLightingObjects() {
-        ArrayList<Tongue> lightingObjects = new ArrayList<>();
-        for (Tongue thing: tongues) {
+    private ArrayList<AcceptingMoneyMachine> getLightingObjects() {
+        ArrayList<AcceptingMoneyMachine> lightingObjects = new ArrayList<>();
+        for (AcceptingMoneyMachine thing : tongues) {
             if (thing.isShining()) {
                 lightingObjects.add(thing);
             }
@@ -34,13 +34,13 @@ public class Room extends Entity {
         return lightingObjects;
     }
 
-    public void getDescriptionAboutRoomLighting(){
-        if (lighting.equals(Lighting.LIGHT)){
-            System.out.println("В объекте " + this.getName() + " " +  lighting.getLighting() + ", можно все разглядеть.");
+    public void getDescriptionAboutRoomLighting() {
+        if (lighting.equals(Lighting.LIGHT)) {
+            System.out.println("В объекте " + this.getName() + " " + lighting.getLighting() + ", можно все разглядеть.");
         } else {
-            ArrayList<Tongue> lightingObjects = getLightingObjects();
-            System.out.println("В объекте " + this.getName() + " " +  lighting.getLighting() + ", можно разглядеть только:");
-            for (Tongue thing: lightingObjects) {
+            ArrayList<AcceptingMoneyMachine> lightingObjects = getLightingObjects();
+            System.out.println("В объекте " + this.getName() + " " + lighting.getLighting() + ", можно разглядеть только:");
+            for (AcceptingMoneyMachine thing : lightingObjects) {
                 System.out.println(thing.getPeephole().getDescription());
                 System.out.println(thing.getDescription());
             }

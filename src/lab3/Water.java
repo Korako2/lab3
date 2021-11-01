@@ -1,9 +1,10 @@
 package lab3;
 
-public class Water extends Entity{
+public class Water extends Entity {
     int volume;
+
     public Water(String name) {
-        super(name);
+        super(name, "используется для умывания");
         volume = 0;
     }
 
@@ -11,7 +12,7 @@ public class Water extends Entity{
         this.volume = volume;
     }
 
-    boolean use() {
+    public boolean use() {
         if (volume > 0) {
             volume--;
             return true;

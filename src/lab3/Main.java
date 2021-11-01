@@ -2,13 +2,15 @@ package lab3;
 
 public class Main {
     public static void main(String[] args) {
-        Room room = new Room();
-        Sink sink = new Sink(new Faucet());
-        Lamp lamp = new Lamp();
-        Tongue tongueForSoap = new Tongue(new Soap(), 1, -1);
-        Tongue tongueForTowel = new Tongue(new Towel(), 1, -1);
-        Tongue tongueForFaucet = new Tongue(sink.getFaucet(), 1, 1);
-        Tongue tongueForLamp = new Tongue(lamp, 1, 5);
+        Room room = new Room("комната", 16);
+        Sink sink = new Sink(new Faucet("кран"), "рукомойник");
+        Lamp lamp = new Lamp("лампочка");
+        Soap soap = new Soap("мыло");
+        Towel towel = new Towel("полотенце");
+        AcceptingMoneyMachine tongueForSoap = new AcceptingMoneyMachine(soap, 1, -1);
+        AcceptingMoneyMachine tongueForTowel = new AcceptingMoneyMachine(towel, 1, -1);
+        AcceptingMoneyMachine tongueForFaucet = new AcceptingMoneyMachine(sink.getFaucet(), 1, 1);
+        AcceptingMoneyMachine tongueForLamp = new AcceptingMoneyMachine(lamp, 1, 5);
         sink.setLocation(room);
         lamp.setLocation(room);
         tongueForSoap.setLocation(room);
@@ -28,9 +30,10 @@ public class Main {
         kozlic.payForSomething(tongueForFaucet);
         if (kozlic.washUp(tongueForSoap, tongueForTowel, tongueForFaucet)) {
             neznaika.startToDoSomething("умываться");
-            if (!neznaika.washUp(tongueForSoap, tongueForTowel, tongueForFaucet)){
-                if (!neznaika.turn(sink.getFaucet(), MethodsOfObjectRotation.BACKANDFORTH, false)){
+            if (!neznaika.washUp(tongueForSoap, tongueForTowel, tongueForFaucet)) {
+                if (!neznaika.turn(sink.getFaucet(), MethodsOfObjectRotation.BACKANDFORTH, false)) {
                     if (!neznaika.knock(sink.getFaucet(), false)) {
+                        soap.pinchEyes(neznaika, "нет воды");
                         neznaika.callForHelp(kozlic);
                         kozlic.analyzeTheSituation("что-то неладное");
                         kozlic.runToSomething(sink.getFaucet());

@@ -3,12 +3,12 @@ package lab3;
 public class Lamp extends Entity implements ThingsWithCost {
     private int count;
     private Room room;
-    private String info;
+    private String dopInfo;
 
-    public Lamp() {
-        super("лампочка");
+    public Lamp(String name) {
+        super(name, "используется для освещения");
         this.count = 0;
-        info = "горит";
+        dopInfo = "горит";
     }
 
     public void setLocation(Room room) {
@@ -28,7 +28,7 @@ public class Lamp extends Entity implements ThingsWithCost {
     public void setCount(int count) {
         if (count == 0) {
             System.out.println("Свет погас" + ".");
-            info = "не горит";
+            dopInfo = "не горит";
             room.setLighting(Lighting.DARKNESS);
         }
         this.count = count;
@@ -39,6 +39,6 @@ public class Lamp extends Entity implements ThingsWithCost {
     }
 
     public String getDescription() {
-        return getName() + ", которая " + info;
+        return getName() + ", которая " + dopInfo;
     }
 }

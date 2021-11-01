@@ -1,17 +1,21 @@
 package lab3;
 
+import java.util.Objects;
+
 public abstract class Shorty {
     private String name;
     private int age;
     private Place placeOfBorn;
     private int money;
     private Room room;
+
     public Shorty(String name, int age, Place placeOfBorn, int money) {
         this.name = name;
         this.age = age;
         this.placeOfBorn = placeOfBorn;
         this.money = money;
     }
+
     public void decideToDoSomething(String part, String action) {
         System.out.println("Время суток: " + part + ". " + this.getName() + " решил " + action + ".");
     }
@@ -25,22 +29,21 @@ public abstract class Shorty {
         System.out.println(this.getName() + " начал " + action + ".");
     }
 
-    public boolean washUp(Tongue soap, Tongue towel, Tongue faucet) {
+    public boolean washUp(AcceptingMoneyMachine soap, AcceptingMoneyMachine towel, AcceptingMoneyMachine faucet) {
         if (soap.useThing(this)) {
-             if ( faucet.useThing(this)) {
-                 if (towel.useThing(this)) return true;
-             }else {
-                 System.out.println(this.getName() + " не смог смыть мыло, так как вода закончилась"+".");
-             }
-        }
-        else {
-            System.out.println(this.getName() + " не смог умыться"+".");
+            if (faucet.useThing(this)) {
+                if (towel.useThing(this)) return true;
+            } else {
+                System.out.println(this.getName() + " не смог смыть мыло, так как вода закончилась" + ".");
+            }
+        } else {
+            System.out.println(this.getName() + " не смог умыться" + ".");
         }
         return false;
     }
 
     public void comeToSomething(Thing thing) {
-        System.out.println(this.getName() + " подошел к предмету: " + thing.getName()+".");
+        System.out.println(this.getName() + " подошел к предмету: " + thing.getName() + ".");
     }
 
     public int getMoney() {
@@ -52,13 +55,12 @@ public abstract class Shorty {
     }
 
     public void analyzeTheSituation(String result) {
-        System.out.println(this.getName() + " проанализировал ситуацию и понял: " + result+".");
+        System.out.println(this.getName() + " проанализировал ситуацию и понял: " + result + ".");
     }
 
 
-
     public void runToSomething(Thing thing) {
-        System.out.println(this.getName() + " подбежал к объекту: " + thing.getName()+".");
+        System.out.println(this.getName() + " подбежал к объекту: " + thing.getName() + ".");
     }
 
     public void callForHelp(Shorty shorty) {
@@ -89,6 +91,9 @@ public abstract class Shorty {
         return result;
     }
 
+    public String getInfo() {
+        return name + ". Возраст: " + age + ". Планета рождения: " + placeOfBorn;
+    }
 
     public String getName() {
         return name;
@@ -97,4 +102,26 @@ public abstract class Shorty {
     public int getAge() {
         return age;
     }
+
+    public String toString() {
+        return getInfo() + ". Кол-во денег: " + money;
+    }
+
+    public int hashCode() {
+        int h = Objects.hashCode(getInfo());
+        return h;
+    }
+
+    public boolean equals(Object shorty1) {
+        if (shorty1 == this) {
+            return true;
+        }
+        if (shorty1 == null || getClass() != shorty1.getClass()) {
+            return false;
+        }
+        Shorty shorty2 = (Shorty) shorty1;
+
+        return getInfo() == shorty2.getInfo();
+    }
+
 }
