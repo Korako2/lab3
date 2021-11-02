@@ -1,14 +1,14 @@
 package lab3;
 
 public class Peephole extends Entity implements Thing {
-    private boolean blinking;
+    private boolean blinking; //If true -> мигает. False -> не мигает.
     private Color color;
     private String dopInfo;
 
     public Peephole(Thing thing, Color color) {
-        super("глазок", "около язычка для " + thing.getName());
+        super("глазок", "над язычком для объекта " + thing.getName());
         blinking = true;
-        dopInfo = "мигает цветом: " + color.getColor();
+        dopInfo = "настойчиво мигает цветом: " + color.getColor();
         this.color = color;
     }
 
@@ -23,13 +23,13 @@ public class Peephole extends Entity implements Thing {
 
     private void blink() {
         blinking = true;
-        dopInfo = "мигает цветом: " + color.getColor();
-        System.out.println(this.getName() + " " + getInfo() + " " + dopInfo + ".");
+        dopInfo = " настойчиво мигает цветом: " + color.getColor();
+        System.out.println("Теперь " + this.getName() + " " + getInfo() + " " + dopInfo + ".");
     }
 
     private void stopBlink() {
         dopInfo = "не мигает";
-        System.out.println(this.getName() + " " + getInfo() + " " + dopInfo + ".");
+        System.out.println("Теперь " + this.getName() + " " + getInfo() + " " + dopInfo + ".");
         blinking = false;
     }
 
@@ -38,6 +38,6 @@ public class Peephole extends Entity implements Thing {
     }
 
     public String getDescription() {
-        return getName() + ", который " + getInfo() + " " + dopInfo + ".";
+        return getName() + ", который " + getInfo() + " " + dopInfo;
     }
 }

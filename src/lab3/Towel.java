@@ -1,7 +1,7 @@
 package lab3;
 
 public class Towel extends Entity implements ThingsWithCost {
-    private int count;
+    private int count; // количество использований(не уменьшается).
 
     public Towel(String name) {
         super(name, "используется для вытирания");

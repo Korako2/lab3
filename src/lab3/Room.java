@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Room extends Entity {
     private ArrayList<Thing> things = new ArrayList<>();
     private Lighting lighting;
-    private ArrayList<AcceptingMoneyMachine> tongues = new ArrayList<>();
+    private ArrayList<AcceptingMoneyMachine> acceptingMoneyMachines = new ArrayList<>();
 
     public Room(String name, int square) {
         super(name, "площадь: " + square);
@@ -16,8 +16,8 @@ public class Room extends Entity {
         things.add(thing);
     }
 
-    public void addTongue(AcceptingMoneyMachine tongue) {
-        tongues.add(tongue);
+    public void addAcceptingMoneyMachine(AcceptingMoneyMachine acceptingMoneyMachine) {
+        acceptingMoneyMachines.add(acceptingMoneyMachine);
     }
 
     public void setLighting(Lighting lighting) {
@@ -26,7 +26,7 @@ public class Room extends Entity {
 
     private ArrayList<AcceptingMoneyMachine> getLightingObjects() {
         ArrayList<AcceptingMoneyMachine> lightingObjects = new ArrayList<>();
-        for (AcceptingMoneyMachine thing : tongues) {
+        for (AcceptingMoneyMachine thing : acceptingMoneyMachines) {
             if (thing.isShining()) {
                 lightingObjects.add(thing);
             }
@@ -42,7 +42,7 @@ public class Room extends Entity {
             System.out.println("В объекте " + this.getName() + " " + lighting.getLighting() + ", можно разглядеть только:");
             for (AcceptingMoneyMachine thing : lightingObjects) {
                 System.out.println(thing.getPeephole().getDescription());
-                System.out.println(thing.getDescription());
+                System.out.println(thing.getTongue().getDescription() + " и поблескивает");
             }
         }
     }

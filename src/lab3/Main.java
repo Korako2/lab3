@@ -7,47 +7,46 @@ public class Main {
         Lamp lamp = new Lamp("лампочка");
         Soap soap = new Soap("мыло");
         Towel towel = new Towel("полотенце");
-        AcceptingMoneyMachine tongueForSoap = new AcceptingMoneyMachine(soap, 1, -1);
-        AcceptingMoneyMachine tongueForTowel = new AcceptingMoneyMachine(towel, 1, -1);
-        AcceptingMoneyMachine tongueForFaucet = new AcceptingMoneyMachine(sink.getFaucet(), 1, 1);
-        AcceptingMoneyMachine tongueForLamp = new AcceptingMoneyMachine(lamp, 1, 5);
+        AcceptingMoneyMachine acceptingMoneyMachineForSoap = new AcceptingMoneyMachine(soap, 1, -1);
+        AcceptingMoneyMachine acceptingMoneyMachineForTowel = new AcceptingMoneyMachine(towel, 1, -1);
+        AcceptingMoneyMachine acceptingMoneyMachineForFaucet = new AcceptingMoneyMachine(sink.getFaucet(), 1, 1);
+        AcceptingMoneyMachine acceptingMoneyMachineForLamp = new AcceptingMoneyMachine(lamp, 1, 5);
         sink.setLocation(room);
         lamp.setLocation(room);
-        tongueForSoap.setLocation(room);
-        tongueForTowel.setLocation(room);
-        tongueForFaucet.setLocation(room);
-        tongueForLamp.setLocation(room);
-        room.getInformationAboutThingsInTheRoom();
+        acceptingMoneyMachineForSoap.setLocation(room);
+        acceptingMoneyMachineForTowel.setLocation(room);
+        acceptingMoneyMachineForFaucet.setLocation(room);
+        acceptingMoneyMachineForLamp.setLocation(room);
+        //room.getInformationAboutThingsInTheRoom();
 
         MoonShorty kozlic = new MoonShorty("Козлик", 20, 4);
-        EarthShorty neznaika = new EarthShorty("Незнайка", 16, 0);
+        EarthShorty neznaika = new EarthShorty("Незнайка", 16);
         kozlic.setLocation(room);
         neznaika.setLocation(room);
         kozlic.decideToDoSomething("ночь", "умыться");
         kozlic.comeToSomething(sink);
-        kozlic.payForSomething(tongueForSoap);
-        kozlic.payForSomething(tongueForTowel);
-        kozlic.payForSomething(tongueForFaucet);
-        if (kozlic.washUp(tongueForSoap, tongueForTowel, tongueForFaucet)) {
-            neznaika.startToDoSomething("умываться");
-            if (!neznaika.washUp(tongueForSoap, tongueForTowel, tongueForFaucet)) {
-                if (!neznaika.turn(sink.getFaucet(), MethodsOfObjectRotation.BACKANDFORTH, false)) {
-                    if (!neznaika.knock(sink.getFaucet(), false)) {
-                        soap.pinchEyes(neznaika, "нет воды");
-                        neznaika.callForHelp(kozlic);
-                        kozlic.analyzeTheSituation("что-то неладное");
-                        kozlic.runToSomething(sink.getFaucet());
-                    } else {
-
+        boolean flag2 = false;
+        boolean flag3 = false;
+        boolean flag1 = kozlic.payForSomething(acceptingMoneyMachineForSoap);
+        if (flag1) flag2 = kozlic.payForSomething(acceptingMoneyMachineForTowel);
+        if (flag2) flag3 = kozlic.payForSomething(acceptingMoneyMachineForFaucet);
+        if (flag1 && flag2 && flag3) {
+            if (kozlic.washUp(acceptingMoneyMachineForSoap, acceptingMoneyMachineForTowel, acceptingMoneyMachineForFaucet)) {
+                neznaika.startToDoSomething("умываться");
+                if (!neznaika.washUp(acceptingMoneyMachineForSoap, acceptingMoneyMachineForTowel, acceptingMoneyMachineForFaucet)) {
+                    if (!neznaika.turn(sink.getFaucet(), MethodsOfObjectRotation.BACKANDFORTH, false)) {
+                        if (!neznaika.knock(sink.getFaucet(), true)) {
+                            soap.pinchEyes(neznaika, "нет воды");
+                            neznaika.callForHelp(kozlic);
+                            kozlic.analyzeTheSituation("что-то неладное");
+                            kozlic.runToSomething(sink.getFaucet());
+                        }
                     }
-                } else {
-
                 }
             }
-
+            acceptingMoneyMachineForFaucet.disabledLight();
         }
-        tongueForLamp.setCount(0);
-        tongueForFaucet.disabledLight();
+        acceptingMoneyMachineForLamp.setCount(0);
         room.getDescriptionAboutRoomLighting();
     }
 }

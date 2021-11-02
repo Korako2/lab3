@@ -5,7 +5,7 @@ public class Soap extends Entity implements ThingsWithCost {
 
     public Soap(String name) {
         super(name, "используется для умывания");
-        count = 0;
+        count = 0; // количество использований мыла(не уменьшается)
     }
 
     public void setLocation(Room room) {

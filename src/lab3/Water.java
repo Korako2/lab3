@@ -15,7 +15,7 @@ public class Water extends Entity {
     public boolean use() {
         if (volume > 0) {
             volume--;
-            return true;
+            return true; // получиться умыться.
         }
         return false;
     }

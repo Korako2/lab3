@@ -1,7 +1,7 @@
 package lab3;
 
-public class Faucet extends Entity implements ThingsWithCost{
-    private boolean state;
+public class Faucet extends Entity implements ThingsWithCost {
+    private boolean state; // Состояние: false-закрыт. True - открыт.
     private Water water;
     private Room room;
 
@@ -11,10 +11,11 @@ public class Faucet extends Entity implements ThingsWithCost{
     }
 
     public void setLocation(Room room) {
-       this.room = room;
+        this.room = room;
     }
+
     public void off() {
-        click();
+        click(); //Кран щелкает при выключении
         state = false;
         System.out.println(water.getName() + " перестала течь.");
     }
@@ -27,13 +28,13 @@ public class Faucet extends Entity implements ThingsWithCost{
     public void click() {
         System.out.println(this.getName() + " щелкнул.");
     }
-
-    public void setCount(int count){
+    //Передаем воде объем через кран.
+    public void setCount(int count) {
         water.setVolume(count);
         on();
     }
 
-    public int getCount(){
+    public int getCount() {
         return water.getVolume();
     }
 

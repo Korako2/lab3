@@ -32,14 +32,14 @@ public abstract class Shorty {
     public boolean washUp(AcceptingMoneyMachine soap, AcceptingMoneyMachine towel, AcceptingMoneyMachine faucet) {
         if (soap.useThing(this)) {
             if (faucet.useThing(this)) {
-                if (towel.useThing(this)) return true;
+                if (towel.useThing(this)) return true; //возвращаем: умывание успешно.
             } else {
                 System.out.println(this.getName() + " не смог смыть мыло, так как вода закончилась" + ".");
             }
         } else {
             System.out.println(this.getName() + " не смог умыться" + ".");
         }
-        return false;
+        return false; // возвращаем: умывание не успешно
     }
 
     public void comeToSomething(Thing thing) {
@@ -73,8 +73,8 @@ public abstract class Shorty {
             System.out.println("Это не помогало.");
         } else {
             System.out.println("Это помогло.");
-            faucet.setCount(1);
-            faucet.use(this);
+            faucet.setCount(1); // Если верчение крана помогло, то добавляем использование крана
+            faucet.use(this); // Продолжаем умываться.
         }
         return result;
     }

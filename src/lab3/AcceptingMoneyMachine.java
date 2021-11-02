@@ -1,39 +1,42 @@
 package lab3;
 
 public class AcceptingMoneyMachine extends Entity implements Thing {
-    private String material;
     private ThingsWithCost thing;
     private Peephole peephole;
+    private Tongue tongue;
     private int cost;
-    private int count;
-    private boolean pokedOut;
+    private int count; //Количество использований объекта за одну оплату.
     private String dopInfo;
+    private boolean isPayed;
 
     public AcceptingMoneyMachine(ThingsWithCost thing, int cost, int count) {
-        super("язычок", "на оплату объекта " + thing.getName());
-        material = "металлический";
+        super("аппарат", "на оплату объекта " + thing.getName());
         this.cost = cost;
         this.count = count;
         this.thing = thing;
-        pokedOut = true;
         peephole = new Peephole(thing, Color.RED);
-        dopInfo = "торчит из стены";
+        tongue = new Tongue(thing);
+        dopInfo = "не оплачен";
     }
 
     public void setLocation(Room room) {
         room.addThing(this);
-        room.addTongue(this);
+        room.addAcceptingMoneyMachine(this);
         peephole.setLocation(room);
+        tongue.setLocation(room);
     }
 
+    // Метод, который меняет состояние машины: если передали true и машина до это не была оплачена, то становится оплаченой
+    // Иначе ничего не происходит.
     private void changeState(boolean flag) {
-        if (pokedOut == flag) {
-            pokedOut = !pokedOut;
-            peephole.changeState(pokedOut);
+        if (isPayed != flag) {
+            isPayed = flag;
+            tongue.changeState(!isPayed); // Если оплачено, то передаем false - спрятать в стену. И наоборот.
+            peephole.changeState(!isPayed);
         }
-        if (!pokedOut) {
-            dopInfo = "находится в стене";
-        } else dopInfo = "торчит из стены";
+        if (!isPayed) {
+            dopInfo = "оплачен";
+        } else dopInfo = "не оплачен";
     }
 
     public boolean isShining() {
@@ -53,30 +56,29 @@ public class AcceptingMoneyMachine extends Entity implements Thing {
         thing.setCount(count);
     }
 
-    public Thing getThing() {
-        return thing;
+    public Tongue getTongue() {
+        return tongue;
     }
 
     public void disabledLight() {
-        if (pokedOut) peephole.changeState(false);
+        peephole.changeState(false);
     }
 
     public boolean useThing(Shorty shorty) {
-        if (!pokedOut) {
+        if (isPayed) {
             boolean flag = thing.use(shorty);
             changeState(flag);
             return flag;
         } else return false;
     }
-
+    //Положить деньги в машину.
     public void putMoney(Shorty shorty) {
-        System.out.println(this.getName() + " положил " + cost + " сантик(ов) в " + this.getName() + ".");
-        thing.setCount(count);
-        changeState(true);
-        System.out.println("Теперь " + this.getName() + " " + getInfo() + ", который " + dopInfo);
+        System.out.println(shorty.getName() + " положил " + cost + " сантик(ов) в " + this.getName() + ".");
+        thing.setCount(count); //Для вещи устанавливаем или обновляем количество использований.
+        changeState(true); //Меняем состояние на оплаченное.
     }
 
     public String getDescription() {
-        return material + " " + getName() + " " + getInfo() + ", который " + dopInfo;
+        return getName() + " " + getInfo() + ", который " + dopInfo + " и состоит из объектов: " + peephole.getName() + ", " + tongue.getName();
     }
 }

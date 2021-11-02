@@ -6,13 +6,15 @@ public class MoonShorty extends Shorty {
         super(name, age, Place.MOON, money);
     }
 
-    public void payForSomething(AcceptingMoneyMachine tongue) {
-        if (this.getMoney() >= tongue.getCost()) {
-            tongue.putMoney(this);
-            this.setMoney(this.getMoney() - tongue.getCost());
+    public boolean payForSomething(AcceptingMoneyMachine acceptingMoneyMachine) {
+        if (this.getMoney() >= acceptingMoneyMachine.getCost()) {
+            acceptingMoneyMachine.putMoney(this);
+            this.setMoney(this.getMoney() - acceptingMoneyMachine.getCost());
             System.out.println("У коротышки " + this.getName() + " осталось " + this.getMoney() + " сантик(ов).");
+            return true;
         } else {
-            System.out.println("У коротышки " + this.getName() + " не достаточно денег для оплаты объекта: " + tongue.getThing().getName() + ".");
+            System.out.println("У коротышки " + this.getName() + " не достаточно денег для оплаты: " + acceptingMoneyMachine.toString() + ".");
+            return false;
         }
     }
 }
