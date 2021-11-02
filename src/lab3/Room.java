@@ -24,16 +24,18 @@ public class Room extends Entity {
         this.lighting = lighting;
     }
 
+    //Метод для поиска светащихся объектов.
     private ArrayList<AcceptingMoneyMachine> getLightingObjects() {
         ArrayList<AcceptingMoneyMachine> lightingObjects = new ArrayList<>();
         for (AcceptingMoneyMachine thing : acceptingMoneyMachines) {
-            if (thing.isShining()) {
+            if (thing.isShining()) { // If глазок механизма светиться, то добавляем в ArrayList.
                 lightingObjects.add(thing);
             }
         }
         return lightingObjects;
     }
 
+    //Метод для получения списка объектов, которые видно при данном освещении.
     public void getDescriptionAboutRoomLighting() {
         if (lighting.equals(Lighting.LIGHT)) {
             System.out.println("В объекте " + this.getName() + " " + lighting.getLighting() + ", можно все разглядеть.");
@@ -41,8 +43,8 @@ public class Room extends Entity {
             ArrayList<AcceptingMoneyMachine> lightingObjects = getLightingObjects();
             System.out.println("В объекте " + this.getName() + " " + lighting.getLighting() + ", можно разглядеть только:");
             for (AcceptingMoneyMachine thing : lightingObjects) {
-                System.out.println(thing.getPeephole().getDescription());
-                System.out.println(thing.getTongue().getDescription() + " и поблескивает");
+                System.out.println(thing.getPeephole().getDescription()); // Получаем описание светящегося глазка.
+                System.out.println(thing.getTongue().getDescription() + " и поблескивает"); // Получаем описание торчащего язычка.
             }
         }
     }

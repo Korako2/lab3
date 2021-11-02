@@ -38,7 +38,7 @@ public class AcceptingMoneyMachine extends Entity implements Thing {
             dopInfo = "оплачен";
         } else dopInfo = "не оплачен";
     }
-
+    //Если true -> глазок механизма светиться. False - не светиться.
     public boolean isShining() {
         return peephole.isBlinking();
     }
