@@ -17,7 +17,7 @@ public class Main {
         acceptingMoneyMachineForTowel.setLocation(room);
         acceptingMoneyMachineForFaucet.setLocation(room);
         acceptingMoneyMachineForLamp.setLocation(room);
-        //room.getInformationAboutThingsInTheRoom();
+        room.getInformationAboutThingsInTheRoom();
 
         MoonShorty kozlic = new MoonShorty("Козлик", 20, 4);
         EarthShorty neznaika = new EarthShorty("Незнайка", 16);
@@ -35,7 +35,7 @@ public class Main {
                 neznaika.startToDoSomething("умываться");
                 if (!neznaika.washUp(acceptingMoneyMachineForSoap, acceptingMoneyMachineForTowel, acceptingMoneyMachineForFaucet)) {
                     if (!neznaika.turn(sink.getFaucet(), MethodsOfObjectRotation.BACKANDFORTH, false)) {
-                        if (!neznaika.knock(sink.getFaucet(), true)) {
+                        if (!neznaika.knock(sink.getFaucet(), false)) {
                             soap.pinchEyes(neznaika, "нет воды");
                             neznaika.callForHelp(kozlic);
                             kozlic.analyzeTheSituation("что-то неладное");
