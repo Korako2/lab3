@@ -38,6 +38,7 @@ public class AcceptingMoneyMachine extends Entity implements Thing {
             dopInfo = "оплачен";
         } else dopInfo = "не оплачен";
     }
+
     //Если true -> глазок механизма светиться. False - не светиться.
     public boolean isShining() {
         return peephole.isBlinking();
@@ -60,17 +61,6 @@ public class AcceptingMoneyMachine extends Entity implements Thing {
         return tongue;
     }
 
-    public void disabledLight() {
-        peephole.changeState(false);
-    }
-
-    public boolean useThing(Shorty shorty) {
-        if (isPayed) {
-            boolean flag = thing.use(shorty);
-            changeState(flag);
-            return flag;
-        } else return false;
-    }
     //Положить деньги в машину.
     public void putMoney(Shorty shorty) {
         System.out.println(shorty.getName() + " положил " + cost + " сантик(ов) в " + this.getName() + ".");

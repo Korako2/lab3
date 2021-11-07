@@ -29,16 +29,13 @@ public abstract class Shorty {
         System.out.println(this.getName() + " начал " + action + ".");
     }
 
-    public boolean washUp(AcceptingMoneyMachine soap, AcceptingMoneyMachine towel, AcceptingMoneyMachine faucet) {
-        if (soap.useThing(this)) {
-            if (faucet.useThing(this)) {
-                if (towel.useThing(this)) return true; //возвращаем: умывание успешно.
-            } else {
-                System.out.println(this.getName() + " не смог смыть мыло, так как вода закончилась" + ".");
-            }
-        } else {
-            System.out.println(this.getName() + " не смог умыться" + ".");
+    public boolean washUp(Soap soap, Towel towel, Faucet faucet) {
+        soap.use(this);
+        if (faucet.use(this)) {
+            towel.use(this);
+            return true; //возвращаем: умывание успешно.
         }
+        System.out.println(this.getName() + " не смог смыть мыло, так как вода закончилась" + ".");
         return false; // возвращаем: умывание не успешно
     }
 

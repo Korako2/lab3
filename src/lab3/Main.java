@@ -65,16 +65,13 @@ public class Main {
         kozlic.comeToSomething(sink);
         boolean flag2 = false;
         boolean flag3 = false;
-
-
-
         boolean flag1 = kozlic.payForSomething(acceptingMoneyMachineForSoap);
         if (flag1) flag2 = kozlic.payForSomething(acceptingMoneyMachineForTowel);
         if (flag2) flag3 = kozlic.payForSomething(acceptingMoneyMachineForFaucet);
         if (flag1 && flag2 && flag3) {
-            if (kozlic.washUp(acceptingMoneyMachineForSoap, acceptingMoneyMachineForTowel, acceptingMoneyMachineForFaucet)) {
+            if (kozlic.washUp(soap, towel, sink.getFaucet())) {
                 neznaika.startToDoSomething("умываться");
-                if (!neznaika.washUp(acceptingMoneyMachineForSoap, acceptingMoneyMachineForTowel, acceptingMoneyMachineForFaucet)) {
+                if (!neznaika.washUp(soap, towel, sink.getFaucet())) {
                     if (!neznaika.turn(sink.getFaucet(), MethodsOfObjectRotation.BACKANDFORTH, resultOfObjectRotation)) {
                         if (!neznaika.knock(sink.getFaucet(), resultOfKnock)) {
                             soap.pinchEyes(neznaika, "нет воды");
@@ -85,7 +82,6 @@ public class Main {
                     }
                 }
             }
-            acceptingMoneyMachineForFaucet.disabledLight();
         }
         acceptingMoneyMachineForLamp.setCount(0);
         room.getDescriptionAboutRoomLighting();
