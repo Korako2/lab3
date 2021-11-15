@@ -4,14 +4,12 @@ import java.util.Objects;
 
 public abstract class Shorty {
     private String name;
-    private int age;
     private Place placeOfBorn;
     private int money;
     private Room room;
 
-    public Shorty(String name, int age, Place placeOfBorn, int money) {
+    public Shorty(String name, Place placeOfBorn, int money) {
         this.name = name;
-        this.age = age;
         this.placeOfBorn = placeOfBorn;
         this.money = money;
     }
@@ -39,8 +37,8 @@ public abstract class Shorty {
         return false; // возвращаем: умывание не успешно
     }
 
-    public void comeToSomething(Thing thing) {
-        System.out.println(this.getName() + " подошел к предмету: " + thing.getName() + ".");
+    public void comeToSomething(Placeable thing) {
+        System.out.println(this.getName() + " подошел к предмету: " + thing.toString() + ".");
     }
 
     public int getMoney() {
@@ -56,8 +54,8 @@ public abstract class Shorty {
     }
 
 
-    public void runToSomething(Thing thing) {
-        System.out.println(this.getName() + " подбежал к объекту: " + thing.getName() + ".");
+    public void runToSomething(Placeable thing) {
+        System.out.println(this.getName() + " подбежал к объекту: " + thing.toString() + ".");
     }
 
     public void callForHelp(Shorty shorty) {
@@ -76,6 +74,10 @@ public abstract class Shorty {
         return result;
     }
 
+    public void goToSleep(){
+        System.out.println(this.getName() + " пошел спать.");
+    }
+
     public boolean knock(Faucet faucet, boolean result) {
         System.out.println(this.getName() + " стучал кулаком по объекту: " + faucet.getName() + ".");
         if (!result) {
@@ -87,18 +89,18 @@ public abstract class Shorty {
         }
         return result;
     }
-
-    public String getInfo() {
-        return name + ". Возраст: " + age + ". Планета рождения: " + placeOfBorn;
+    public Place getPlaceOfBorn() {
+        return placeOfBorn;
     }
+    public abstract String getInfo();
 
     public String getName() {
         return name;
     }
 
-    public int getAge() {
-        return age;
-    }
+    public abstract int getAge();
+
+    public abstract String getInfoAboutAge();
 
     public String toString() {
         return getInfo() + ". Кол-во денег: " + money;

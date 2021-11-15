@@ -1,6 +1,6 @@
 package lab3;
 
-public class Soap extends Entity implements ThingsWithCost {
+public class Soap extends Entity implements Payable, Placeable {
     private int count;
 
     public Soap(String name) {
@@ -31,7 +31,7 @@ public class Soap extends Entity implements ThingsWithCost {
         System.out.println(this.getName() + " невыносимо щиплет глаза объекту " + shorty.getName() + " так как " + reason + ".");
     }
 
-    public String getDescription() {
+    public String toString() {
         return getName();
     }
 }

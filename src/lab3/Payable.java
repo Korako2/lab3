@@ -1,6 +1,6 @@
 package lab3;
 
-public interface ThingsWithCost extends Thing {
+public interface Payable {
     boolean use(Shorty shorty);
 
     void setCount(int count);

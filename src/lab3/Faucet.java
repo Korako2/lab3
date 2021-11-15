@@ -1,6 +1,6 @@
 package lab3;
 
-public class Faucet extends Entity implements ThingsWithCost {
+public class Faucet extends Entity implements Payable, Placeable {
     private boolean state; // Состояние: false-закрыт. True - открыт.
     private Water water;
     private Room room;
@@ -47,7 +47,7 @@ public class Faucet extends Entity implements ThingsWithCost {
         }
     }
 
-    public String getDescription() {
+    public String toString() {
         return getName();
     }
 }

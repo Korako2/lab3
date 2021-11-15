@@ -1,6 +1,6 @@
 package lab3;
 
-public class Towel extends Entity implements ThingsWithCost {
+public class Towel extends Entity implements Payable, Placeable {
     private int count; // количество использований(не уменьшается).
 
     public Towel(String name) {
@@ -9,6 +9,7 @@ public class Towel extends Entity implements ThingsWithCost {
     }
 
     public void setLocation(Room room) {
+        room.addThing(this);
     }
 
     public boolean use(Shorty shorty) {
@@ -28,7 +29,7 @@ public class Towel extends Entity implements ThingsWithCost {
         return count;
     }
 
-    public String getDescription() {
+    public String toString() {
         return getName();
     }
 }

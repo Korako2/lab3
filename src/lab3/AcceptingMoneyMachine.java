@@ -1,7 +1,7 @@
 package lab3;
 
-public class AcceptingMoneyMachine extends Entity implements Thing {
-    private ThingsWithCost thing;
+public class AcceptingMoneyMachine extends Entity implements Placeable {
+    private Payable thing;
     private Peephole peephole;
     private Tongue tongue;
     private int cost;
@@ -9,8 +9,8 @@ public class AcceptingMoneyMachine extends Entity implements Thing {
     private String dopInfo;
     private boolean isPayed;
 
-    public AcceptingMoneyMachine(ThingsWithCost thing, int cost, int count) {
-        super("аппарат", "на оплату объекта " + thing.getName());
+    public AcceptingMoneyMachine(Payable thing, int cost, int count) {
+        super("аппарат", "на оплату объекта " + thing.toString());
         this.cost = cost;
         this.count = count;
         this.thing = thing;
@@ -68,7 +68,7 @@ public class AcceptingMoneyMachine extends Entity implements Thing {
         changeState(true); //Меняем состояние на оплаченное.
     }
 
-    public String getDescription() {
+    public String toString() {
         return getName() + " " + getInfo() + ", который " + dopInfo + " и состоит из объектов: " + peephole.getName() + ", " + tongue.getName();
     }
 }

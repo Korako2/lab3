@@ -23,4 +23,8 @@ public class Water extends Entity {
     public int getVolume() {
         return volume;
     }
+
+    public String toString() {
+        return getName() + " объемом " + volume;
+    }
 }

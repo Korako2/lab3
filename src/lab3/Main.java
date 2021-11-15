@@ -57,7 +57,7 @@ public class Main {
         room.getInformationAboutThingsInTheRoom();
 
 
-        MoonShorty kozlic = new MoonShorty("Козлик", 20, randomMoney);
+        MoonShorty kozlic = new MoonShorty("Козлик", randomMoney, 192);
         EarthShorty neznaika = new EarthShorty("Незнайка", 16);
         kozlic.setLocation(room);
         neznaika.setLocation(room);
@@ -69,19 +69,21 @@ public class Main {
         if (flag1) flag2 = kozlic.payForSomething(acceptingMoneyMachineForTowel);
         if (flag2) flag3 = kozlic.payForSomething(acceptingMoneyMachineForFaucet);
         if (flag1 && flag2 && flag3) {
-            if (kozlic.washUp(soap, towel, sink.getFaucet())) {
-                neznaika.startToDoSomething("умываться");
-                if (!neznaika.washUp(soap, towel, sink.getFaucet())) {
-                    if (!neznaika.turn(sink.getFaucet(), MethodsOfObjectRotation.BACKANDFORTH, resultOfObjectRotation)) {
-                        if (!neznaika.knock(sink.getFaucet(), resultOfKnock)) {
-                            soap.pinchEyes(neznaika, "нет воды");
-                            neznaika.callForHelp(kozlic);
-                            kozlic.analyzeTheSituation("что-то неладное");
-                            kozlic.runToSomething(sink.getFaucet());
-                        }
+            kozlic.washUp(soap, towel, sink.getFaucet());
+            neznaika.startToDoSomething("умываться");
+            if (!neznaika.washUp(soap, towel, sink.getFaucet())) {
+                if (!neznaika.turn(sink.getFaucet(), MethodsOfObjectRotation.BACKANDFORTH, resultOfObjectRotation)) {
+                    if (!neznaika.knock(sink.getFaucet(), resultOfKnock)) {
+                        soap.pinchEyes(neznaika, "нет воды");
+                        neznaika.callForHelp(kozlic);
+                        kozlic.analyzeTheSituation("что-то неладное");
+                        kozlic.runToSomething(sink.getFaucet());
                     }
                 }
             }
+        } else {
+            kozlic.goToSleep();
+            neznaika.goToSleep();
         }
         acceptingMoneyMachineForLamp.setCount(0);
         room.getDescriptionAboutRoomLighting();

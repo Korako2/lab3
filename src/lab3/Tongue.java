@@ -1,12 +1,12 @@
 package lab3;
 
-public class Tongue extends Entity implements Thing {
+public class Tongue extends Entity implements Placeable {
     private String material;
     private String dopInfo;
     private boolean pokedOut;
 
-    public Tongue(Thing thing) {
-        super("язычок", "на оплату объекта " + thing.getName());
+    public Tongue(Payable thing) {
+        super("язычок", "на оплату объекта " + thing.toString());
         material = "металлический";
         pokedOut = true; // true - выдвинут из стены. false - спрятан.
         dopInfo = "торчит из стены"; // Если pokedOut = true -> торчит из стены. Если false - находится в стене.
@@ -20,15 +20,14 @@ public class Tongue extends Entity implements Thing {
         if (flag) {
             dopInfo = "торчит из стены";
             System.out.println("Теперь " + getName() + " " + getInfo() + " " + dopInfo + ".");
-        }
-        else {
+        } else {
             dopInfo = "находится в стене";
             System.out.println("Теперь " + getName() + " " + getInfo() + " " + dopInfo + ".");
         }
         pokedOut = flag;
     }
 
-    public String getDescription() {
-        return material + " " + getName() + " " + getInfo() + ", который  " + dopInfo;
+    public String toString() {
+        return material + " " + getName() + " " + getInfo() + ", который " + dopInfo;
     }
 }

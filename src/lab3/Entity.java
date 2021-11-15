@@ -10,7 +10,6 @@ public abstract class Entity {
         this.name = name;
         this.info = info;
     }
-
     public String getName() {
         return name;
     }
@@ -19,9 +18,7 @@ public abstract class Entity {
         return info;
     }
 
-    public String toString() {
-        return name + " " + info;
-    }
+    public abstract String toString();
 
     public int hashCode() {
         int h = Objects.hashCode(toString());

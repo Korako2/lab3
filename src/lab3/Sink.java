@@ -1,6 +1,6 @@
 package lab3;
 
-public class Sink extends Entity implements Thing {
+public class Sink extends Entity implements Placeable {
     private Faucet faucet;
 
     public Sink(Faucet faucet, String name) {
@@ -16,7 +16,7 @@ public class Sink extends Entity implements Thing {
         return faucet;
     }
 
-    public String getDescription() {
+    public String toString() {
         return getName() + ", у которого есть " + faucet.getName();
     }
 }

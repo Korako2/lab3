@@ -1,12 +1,12 @@
 package lab3;
 
-public class Lamp extends Entity implements ThingsWithCost {
+public class Lamp extends Entity implements Payable, Placeable {
     private int count;
     private Room room;
     private String dopInfo;
 
     public Lamp(String name) {
-        super(name, "используется для освещения");
+        super(name, ", которая висит на потолке");
         this.count = 0;
         dopInfo = "горит";
     }
@@ -38,7 +38,7 @@ public class Lamp extends Entity implements ThingsWithCost {
         return count;
     }
 
-    public String getDescription() {
-        return getName() + ", которая " + dopInfo;
+    public String toString() {
+        return getName();
     }
 }

@@ -2,8 +2,10 @@ package lab3;
 
 
 public class MoonShorty extends Shorty {
-    public MoonShorty(String name, int age, int money) {
-        super(name, age, Place.MOON, money);
+    private int moonAge;
+    public MoonShorty(String name, int money, int moonAge) {
+        super(name, Place.MOON, money);
+        this.moonAge = moonAge;
     }
 
     public boolean payForSomething(AcceptingMoneyMachine acceptingMoneyMachine) {
@@ -16,5 +18,16 @@ public class MoonShorty extends Shorty {
             System.out.println("У коротышки " + this.getName() + " не достаточно денег для оплаты: " + acceptingMoneyMachine.toString() + ".");
             return false;
         }
+    }
+    public int getAge() {
+        return moonAge;
+    }
+
+    public String getInfoAboutAge() {
+        return moonAge + " в лунных годах";
+    }
+
+    public String getInfo() {
+        return getName() + ". Возраст: " + getInfoAboutAge() + ". Планета рождения: " + getPlaceOfBorn();
     }
 }

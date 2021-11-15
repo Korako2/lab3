@@ -3,16 +3,18 @@ package lab3;
 import java.util.ArrayList;
 
 public class Room extends Entity {
-    private ArrayList<Thing> things = new ArrayList<>();
+    private ArrayList<Placeable> things = new ArrayList<>();
     private Lighting lighting;
     private ArrayList<AcceptingMoneyMachine> acceptingMoneyMachines = new ArrayList<>();
+    private int square;
 
     public Room(String name, int square) {
         super(name, "площадь: " + square);
         lighting = Lighting.LIGHT;
+        this.square = square;
     }
 
-    public void addThing(Thing thing) {
+    public void addThing(Placeable thing) {
         things.add(thing);
     }
 
@@ -43,16 +45,21 @@ public class Room extends Entity {
             ArrayList<AcceptingMoneyMachine> lightingObjects = getLightingObjects();
             System.out.println("В объекте " + this.getName() + " " + lighting.getLighting() + ", можно разглядеть только:");
             for (AcceptingMoneyMachine thing : lightingObjects) {
-                System.out.println(thing.getPeephole().getDescription()); // Получаем описание светящегося глазка.
-                System.out.println(thing.getTongue().getDescription() + " и поблескивает"); // Получаем описание торчащего язычка.
+                System.out.println(thing.getPeephole().toString()); // Получаем описание светящегося глазка.
+                System.out.println(thing.getTongue().toString() + " и поблескивает"); // Получаем описание торчащего язычка.
             }
         }
     }
 
     public void getInformationAboutThingsInTheRoom() {
         System.out.println("В объекте " + this.getName() + " находятся:");
-        for (Thing thing : things) {
-            System.out.println(thing.getDescription() + ".");
+        for (Placeable thing : things) {
+            System.out.println(thing.toString() + ".");
         }
     }
+
+    public String toString() {
+        return getName() + " площадью " + square;
+    }
+
 }

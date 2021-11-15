@@ -1,12 +1,12 @@
 package lab3;
 
-public class Peephole extends Entity implements Thing {
+public class Peephole extends Entity implements Placeable {
     private boolean blinking; //If true -> мигает. False -> не мигает.
     private Color color;
     private String dopInfo;
 
-    public Peephole(Thing thing, Color color) {
-        super("глазок", "над язычком для объекта " + thing.getName());
+    public Peephole(Payable thing, Color color) {
+        super("глазок", "над язычком для объекта " + thing.toString());
         blinking = true;
         dopInfo = "настойчиво мигает цветом: " + color.getColor();
         this.color = color;
@@ -37,7 +37,7 @@ public class Peephole extends Entity implements Thing {
         room.addThing(this);
     }
 
-    public String getDescription() {
+    public String toString() {
         return getName() + ", который " + getInfo() + " " + dopInfo;
     }
 }
