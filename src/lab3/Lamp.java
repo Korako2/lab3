@@ -31,6 +31,7 @@ public class Lamp extends Entity implements Payable, Placeable {
             dopInfo = "не горит";
             room.setLighting(Lighting.DARKNESS);
         }
+        //прописать свет загорелся.
         this.count = count;
     }
 

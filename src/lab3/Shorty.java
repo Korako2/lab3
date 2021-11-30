@@ -74,7 +74,7 @@ public abstract class Shorty {
         return result;
     }
 
-    public void goToSleep(){
+    public void goToSleep() {
         System.out.println(this.getName() + " пошел спать.");
     }
 
@@ -89,9 +89,49 @@ public abstract class Shorty {
         }
         return result;
     }
+
+    public void understandWhatToDo(Placeable thing, String action) {
+        System.out.println(this.getName() + " сообразил, что нужно " + action + " объект " + thing.toString());
+    }
+
+    public void seeObject(Entity entity) {
+        //!!!!!!System.out.println();
+    }
+
+    public void washOffSoap(Soap soap) {
+
+    }
+
+    public void sigh() {
+        System.out.println(this.getName() + " тяжело вздохнул.");
+    }
+
+    public void say(String info) {
+        System.out.println(this.getName() + " сказал " + info + ".");
+    }
+
+    public void undress() {
+        System.out.println(this.getName() + " разделся.");
+    }
+    public void goToBed(Bed bed){
+        System.out.println(this.getName() + " забрался в " + bed.getName());
+    }
+    public void feelTheCool(Room room) {
+        //!!System.out.println();
+    }
+    public void WrapUpInBlanket(Bed bed){
+        //!!!
+    }
+    public void jumpFromBed(Bed bed) {
+        //!!
+    }
+    public void pushOnButton(Button button) {
+        //
+    }
     public Place getPlaceOfBorn() {
         return placeOfBorn;
     }
+
     public abstract String getInfo();
 
     public String getName() {

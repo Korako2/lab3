@@ -28,7 +28,7 @@ public class AcceptingMoneyMachine extends Entity implements Placeable {
 
     // Метод, который меняет состояние машины: если передали true и машина до это не была оплачена, то становится оплаченой
     // Иначе ничего не происходит.
-    private void changeState(boolean flag) {
+    protected void changeState(boolean flag) {
         if (isPayed != flag) {
             isPayed = flag;
             tongue.changeState(!isPayed); // Если оплачено, то передаем false - спрятать в стену. И наоборот.

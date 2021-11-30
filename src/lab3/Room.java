@@ -4,14 +4,49 @@ import java.util.ArrayList;
 
 public class Room extends Entity {
     private ArrayList<Placeable> things = new ArrayList<>();
+    private ArrayList<Wall> wall = new ArrayList<>();
     private Lighting lighting;
     private ArrayList<AcceptingMoneyMachine> acceptingMoneyMachines = new ArrayList<>();
-    private int square;
+    private final int square;
+    private int temperature;
+    private Entity door;
 
     public Room(String name, int square) {
         super(name, "площадь: " + square);
         lighting = Lighting.LIGHT;
         this.square = square;
+        Wall wall_1 = new Wall("первая стена");
+        addWall(wall_1);
+        //3 стены
+        door = new Entity("дверь", "?") {
+            public String toString() {
+                //?
+                return null;
+            }
+        };
+        wall.get(1).addHanging(door);//?
+    }
+
+    public void addWall(Wall wall) {
+        this.wall.add(wall);
+    }
+
+    public void hangThing(Entity entity) {
+        wall.get(1).addHanging(entity);
+        //??
+    }
+
+    public class Wall {
+        private String name;
+        private ArrayList<Entity> hanging = new ArrayList<>();
+
+        private Wall(String name) {
+            this.name = name;
+        }
+
+        public void addHanging(Entity entity) {
+            hanging.add(entity);
+        }
     }
 
     public void addThing(Placeable thing) {
@@ -62,4 +97,15 @@ public class Room extends Entity {
         return getName() + " площадью " + square;
     }
 
+    public int getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(int temperature) {
+        this.temperature = temperature;
+    }
+
+    public void getDecriptionAboutTemperature() {
+        //!!!
+    }
 }

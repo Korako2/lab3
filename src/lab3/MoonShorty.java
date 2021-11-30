@@ -30,4 +30,12 @@ public class MoonShorty extends Shorty {
     public String getInfo() {
         return getName() + ". Возраст: " + getInfoAboutAge() + ". Планета рождения: " + getPlaceOfBorn();
     }
+    public int getMoneyFromPocket(int money) {
+        //прописать логику проверки хватит ли денег в кармане.
+        return money;
+    }
+    public int countTheMoney() {
+        System.out.println(this.getName() + " подсчитал оставшиеся монеты. Осталось: " + this.getMoney() + " сантиков.");
+        return this.getMoney();
+    }
 }
