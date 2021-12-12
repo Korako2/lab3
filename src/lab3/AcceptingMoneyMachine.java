@@ -61,6 +61,26 @@ public class AcceptingMoneyMachine extends Entity implements Placeable {
         return tongue;
     }
 
+    public Payable getThing() {
+        return thing;
+    }
+
+    public String getDopInfo() {
+        return dopInfo;
+    }
+
+    public boolean isPayed() {
+        return isPayed;
+    }
+
+    public void setPayed(boolean payed) {
+        isPayed = payed;
+    }
+
+    public void setDopInfo(String dopInfo) {
+        this.dopInfo = dopInfo;
+    }
+
     //Положить деньги в машину.
     public void putMoney(Shorty shorty) {
         System.out.println(shorty.getName() + " положил " + cost + " сантик(ов) в " + this.getName() + ".");

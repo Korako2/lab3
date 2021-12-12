@@ -9,43 +9,55 @@ public class Room extends Entity {
     private ArrayList<AcceptingMoneyMachine> acceptingMoneyMachines = new ArrayList<>();
     private final int square;
     private int temperature;
-    private Entity door;
+    private Placeable door;
 
     public Room(String name, int square) {
         super(name, "площадь: " + square);
         lighting = Lighting.LIGHT;
         this.square = square;
+        temperature = 20;
         Wall wall_1 = new Wall("первая стена");
         addWall(wall_1);
-        //3 стены
-        door = new Entity("дверь", "?") {
+        Wall wall_2 = new Wall("вторая стена");
+        addWall(wall_1);
+        Wall wall_3 = new Wall("третья стена");
+        addWall(wall_1);
+        Wall wall_4 = new Wall("четвертая стена");
+        addWall(wall_1);
+        addWall(wall_2);
+        addWall(wall_3);
+        addWall(wall_4);
+        door = new Placeable() {
+            @Override
+            public void setLocation(Room room) {
+                room.hangThing(this);
+            }
+
             public String toString() {
-                //?
-                return null;
+                return "дверь";
             }
         };
-        wall.get(1).addHanging(door);//?
+        door.setLocation(this);
     }
 
     public void addWall(Wall wall) {
         this.wall.add(wall);
     }
 
-    public void hangThing(Entity entity) {
-        wall.get(1).addHanging(entity);
-        //??
+    public void hangThing(Placeable thing) {
+        wall.get(0).addHanging(thing);
+        addThing(thing);
     }
 
     public class Wall {
         private String name;
-        private ArrayList<Entity> hanging = new ArrayList<>();
+        private ArrayList<Placeable> hanging = new ArrayList<>();
 
         private Wall(String name) {
-            this.name = name;
-        }
+            this.name = name;         }
 
-        public void addHanging(Entity entity) {
-            hanging.add(entity);
+        public void addHanging(Placeable thing) {
+            hanging.add(thing);
         }
     }
 
@@ -105,7 +117,20 @@ public class Room extends Entity {
         this.temperature = temperature;
     }
 
-    public void getDecriptionAboutTemperature() {
-        //!!!
+    public Placeable getDoor() {
+        return door;
+    }
+
+    public void getDescriptionAboutTemperature() {
+        if (temperature < 15) {
+            System.out.println("Холод пронизывает до костей.");
+        } else {
+            if (temperature >= 15 && temperature <= 25) {
+                System.out.println("В комнате комфортная температура.");
+            }
+            else {
+                System.out.println("В комнате очень жарко.");
+            }
+        }
     }
 }

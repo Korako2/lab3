@@ -4,7 +4,7 @@ public class Bed extends Entity implements Placeable{
     private Entity blanket;
     public Bed(String name){
         super(name, "используется для сна");
-        blanket = new Entity("одеяло","используется для тепла??????") {
+        blanket = new Entity("одеяло","используется для укрывания") {
             public String toString() {
                 //!!!!
                 return null;

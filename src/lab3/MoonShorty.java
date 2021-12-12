@@ -30,9 +30,15 @@ public class MoonShorty extends Shorty {
     public String getInfo() {
         return getName() + ". Возраст: " + getInfoAboutAge() + ". Планета рождения: " + getPlaceOfBorn();
     }
-    public int getMoneyFromPocket(int money) {
-        //прописать логику проверки хватит ли денег в кармане.
-        return money;
+    public boolean getMoneyFromPocket(int money) {
+        if (getMoney() >= money) {
+            System.out.println(this.getName() + " достал " + money + " сантик(ов) из кармана.");
+            return true;
+        }
+        else {
+            System.out.println(this.getName() + " не смог достать " + money + " сантик(ов) из кармана, т.к. недостаточно денег.");
+            return false;
+        }
     }
     public int countTheMoney() {
         System.out.println(this.getName() + " подсчитал оставшиеся монеты. Осталось: " + this.getMoney() + " сантиков.");

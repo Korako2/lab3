@@ -74,10 +74,6 @@ public abstract class Shorty {
         return result;
     }
 
-    public void goToSleep() {
-        System.out.println(this.getName() + " пошел спать.");
-    }
-
     public boolean knock(Faucet faucet, boolean result) {
         System.out.println(this.getName() + " стучал кулаком по объекту: " + faucet.getName() + ".");
         if (!result) {
@@ -94,12 +90,15 @@ public abstract class Shorty {
         System.out.println(this.getName() + " сообразил, что нужно " + action + " объект " + thing.toString());
     }
 
-    public void seeObject(Entity entity) {
-        //!!!!!!System.out.println();
+    public void seeObjects(Entity ... entities) {
+        System.out.println(this.getName() + " увидел объект(ы):");
+        for (Entity entity: entities) {
+            System.out.println(entity.toString());
+        }
     }
 
     public void washOffSoap(Soap soap) {
-
+        System.out.println(this.getName() + " смог смыть разъедавшее глаза " + soap.getName() + ".");
     }
 
     public void sigh() {
@@ -113,21 +112,38 @@ public abstract class Shorty {
     public void undress() {
         System.out.println(this.getName() + " разделся.");
     }
-    public void goToBed(Bed bed){
-        System.out.println(this.getName() + " забрался в " + bed.getName());
+
+    public void goToBed(Bed bed) {
+        System.out.println(this.getName() + " забрался в " + bed.getName() + ".");
     }
-    public void feelTheCool(Room room) {
-        //!!System.out.println();
+
+    public boolean feelTheCool(Room room) {
+        if (room.getTemperature() < 15) {
+            System.out.println(this.getName() + " почувствовал, что объекте " + room.getName() + " стало холодно.");
+            return true;
+        } else {
+            System.out.println(this.getName() + " ощутил, что объекте " + room.getName() + " комфортная температура.");
+            return false;
+        }
     }
-    public void WrapUpInBlanket(Bed bed){
-        //!!!
+
+    public void wrapUpInBlanket(Bed bed) {
+        System.out.println(this.getName() + " закутывался в " + bed.getBlanket().getName() + ".");
     }
+
     public void jumpFromBed(Bed bed) {
-        //!!
+        System.out.println(this.getName() + " вскочил с объекта " + bed.getName() + ".");
     }
+
     public void pushOnButton(Button button) {
-        //
+        System.out.println(this.getName() + " нажал на объект " + button.toString());
+        button.push();
     }
+
+    public void sleep() {
+        System.out.println(this.getName() + " заснул.");
+    }
+
     public Place getPlaceOfBorn() {
         return placeOfBorn;
     }
